@@ -1,0 +1,135 @@
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+ }
+body{
+    margin: 0;
+    background: white;
+    background-attachment:fixed;
+    min-height: 100%;
+    width: 100%;
+}
+.grid{
+    width: 960px;
+    margin: auto;
+    border: 0;
+    background: #d7dbe4;
+}
+.content{
+    width: auto;
+    height: auto;
+}
+.navbar{
+    display: flex;
+    background: #1b929d !important;
+}
+.nav a{
+    background-color: #f0f2f5;
+    color: black !important;
+    border-bottom: 1px solid gray;
+    text-decoration: none;
+}
+.btn-light {
+    font-size: 1.25rem;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid gray;
+    padding: 1rem !important;
+}
+.btn-light:hover {
+    border: 1px solid gray;
+    color: black;
+    background-color: rgba(255, 255, 255, .9) !important; 
+}
+.btn-light:focus {
+    outline: none !important;
+    box-shadow: none !important; 
+    border: 1px solid gray;
+    color: black;
+    background-color: rgba(255, 255, 255, .75) !important;
+}
+.operand{
+    background-color: rgba(220, 245, 240, 0.974);
+    color: #000000;
+}
+.equal{
+    background-color: rgba(220, 245, 240, 0.974);
+    color: #000000;
+}
+.number{
+        background: #f1f3f4;
+        color: #202124;
+        border: 1px solid gray;
+        border-radius: 4px;
+}
+.output {
+    background-color: rgba(0, 0, 0, .75);
+    word-wrap: break-word;
+    word-break: break-all;
+    text-align: right;
+    min-height: 90px;
+}
+.previous-number {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1rem;
+    min-height: 1rem;
+}
+.current-number {
+    color: white;
+    font-size: 2rem;
+    min-height: auto;
+}
+.content .cal{
+    width: 350px;
+}
+.row {
+    --bs-gutter-x: 0;
+}
+/* calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+/*
+.row {
+    --bs-gutter-x: 0;
+}
+
+.special-operand{
+    color:rgb(204, 123, 123) !important;
+    background-color: rgba(220, 245, 240, 0.974);
+    color: #000000;
+}
+.operand{
+    background-color: rgba(220, 245, 240, 0.974);
+    color: #000000;
+}
+.equal{
+    background-color: rgba(220, 245, 240, 0.974);
+    color: #000000;
+}
+.number{
+        background: #f1f3f4;
+        color: #202124;
+        border: 1px solid #f1f3f4;
+        border-radius: 4px;
+}
+.output {
+    background-color: rgba(0, 0, 0, .75);
+    word-wrap: break-word;
+    word-break: break-all;
+    text-align: right;
+    min-height: 90px;
+}
+.previous-number {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1rem;
+    min-height: 1rem;
+}
+.current-number {
+    color: white;
+    font-size: 2rem;
+    min-height: auto;
+
+} */
