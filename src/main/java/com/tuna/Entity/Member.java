@@ -13,16 +13,23 @@ public class Member {
     private String email;
     @Column(name="MATKHAU", length = 255)
     private String password;
-
+    @Column(name="SDT", length = 255)
+    private String phone;
+    @Column(name="DIACHI", length = 255)
+    private String address;
+    @Column(name="STATUS", length = 255)
+    private boolean status;
     public Member() {
     }
 
-    public Member( int member_id,String member_name, String email, String password) {
-        this.member_id=member_id;
+    public Member(int member_id, String member_name, String email, String password, String phone, String address, boolean status) {
+        this.member_id = member_id;
         this.member_name = member_name;
         this.email = email;
         this.password = password;
-
+        this.phone = phone;
+        this.address = address;
+        this.status = status;
     }
 
     public int getMember_id() {
@@ -55,5 +62,29 @@ public class Member {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

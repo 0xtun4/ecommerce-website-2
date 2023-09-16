@@ -6,5 +6,11 @@ import com.tuna.repositories.response.LoginResponse;
 
 public interface MemberService {
     String addMember(MemberDTO memberDTO);
+
+    String updateMember(MemberDTO memberDTO);
+
+    String deleteMember(long memberId);
+
     LoginResponse loginMember(LogInDTO loginDTO);
+
 }

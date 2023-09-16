@@ -5,15 +5,21 @@ public class MemberDTO {
     private String member_name;
     private String email;
     private String password;
+    private String phone;
+    private String address;
+    private boolean status;
 
     public MemberDTO() {
     }
 
-    public MemberDTO(int member_id, String member_name, String email, String password) {
+    public MemberDTO(int member_id, String member_name, String email, String password, String phone, String address, boolean status) {
         this.member_id = member_id;
         this.member_name = member_name;
         this.email = email;
         this.password = password;
+        this.phone = phone;
+        this.address = address;
+        this.status = status;
     }
 
     public int getMember_id() {
@@ -46,5 +52,29 @@ public class MemberDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

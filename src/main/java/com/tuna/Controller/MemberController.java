@@ -26,12 +26,19 @@ public class MemberController {
         String id = memberService.addMember(memberDTO);
         return id;
     }
+
+    @PostMapping(path = "/update/{id}")
+    public ResponseEntity<String> updateMember(@RequestBody MemberDTO memberDTO) {
+        String message = memberService.updateMember(memberDTO);
+        return ResponseEntity.ok(message);
+    }
+
     @PostMapping(path = "/login")
     public ResponseEntity<?> loginMember(@RequestBody LogInDTO loginDTO) {
         LoginResponse  loginResponse = memberService.loginMember(loginDTO);
         return ResponseEntity.ok(loginResponse);
     }
-
+    
     
 
 }
