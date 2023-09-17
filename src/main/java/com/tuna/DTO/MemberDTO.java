@@ -1,18 +1,18 @@
 package com.tuna.DTO;
 
 public class MemberDTO {
-    private int member_id;
+    private long member_id;
     private String member_name;
     private String email;
     private String password;
     private String phone;
     private String address;
-    private boolean status;
+    private String status;
 
     public MemberDTO() {
     }
 
-    public MemberDTO(int member_id, String member_name, String email, String password, String phone, String address, boolean status) {
+    public MemberDTO(long member_id, String member_name, String email, String password, String phone, String address, String status) {
         this.member_id = member_id;
         this.member_name = member_name;
         this.email = email;
@@ -22,11 +22,11 @@ public class MemberDTO {
         this.status = status;
     }
 
-    public int getMember_id() {
+    public long getMember_id() {
         return member_id;
     }
 
-    public void setMember_id(int member_id) {
+    public void setMember_id(long member_id) {
         this.member_id = member_id;
     }
 
@@ -70,11 +70,11 @@ public class MemberDTO {
         this.address = address;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

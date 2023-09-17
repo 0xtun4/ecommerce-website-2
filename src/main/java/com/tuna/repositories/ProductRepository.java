@@ -9,6 +9,9 @@ import java.util.List;
 @EnableJpaRepositories
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
-
     List<Product> findByProductName(String productName);
+    List<Product> findAllByOrderByProductNameAsc();
+    List<com.tuna.Model.Product> findAllByOrderByProductNameDesc();
+
+    List<com.tuna.Model.Product> findByProductNameContainingIgnoreCase(String keyword);
 }

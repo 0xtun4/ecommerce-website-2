@@ -1,4 +1,6 @@
 package com.tuna.Entity;
+import org.springframework.data.convert.Jsr310Converters;
+
 import javax.persistence.*;
 @Entity
 @Table(name="kh")
@@ -6,7 +8,7 @@ public class Member {
     @Id
     @Column(name="MA_KH", length = 45)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int member_id;
+    private long member_id;
     @Column(name="TEN_KH", length = 255)
     private String member_name;
     @Column(name="EMAIL", length = 255)
@@ -18,11 +20,11 @@ public class Member {
     @Column(name="DIACHI", length = 255)
     private String address;
     @Column(name="STATUS", length = 255)
-    private boolean status;
+    private String status;
     public Member() {
     }
 
-    public Member(int member_id, String member_name, String email, String password, String phone, String address, boolean status) {
+    public Member(long member_id, String member_name, String email, String password, String phone, String address, String status) {
         this.member_id = member_id;
         this.member_name = member_name;
         this.email = email;
@@ -32,11 +34,11 @@ public class Member {
         this.status = status;
     }
 
-    public int getMember_id() {
+    public long getMember_id() {
         return member_id;
     }
 
-    public void setMember_id(int member_id) {
+    public void setMember_id(long member_id) {
         this.member_id = member_id;
     }
 
@@ -80,11 +82,11 @@ public class Member {
         this.address = address;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

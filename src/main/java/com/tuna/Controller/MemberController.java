@@ -2,16 +2,16 @@ package com.tuna.Controller;
 
 import com.tuna.DTO.LogInDTO;
 import com.tuna.DTO.MemberDTO;
+import com.tuna.Entity.Member;
 import com.tuna.repositories.response.LoginResponse;
 import com.tuna.Service.MemberService;
-import com.tuna.payload.response.LoginMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -20,17 +20,20 @@ public class MemberController {
     @Autowired
     private  MemberService memberService;
 
-
     @PostMapping(path = "/add")
     public String addMember(@RequestBody MemberDTO memberDTO) {
         String id = memberService.addMember(memberDTO);
         return id;
     }
-
-    @PostMapping(path = "/update/{id}")
-    public ResponseEntity<String> updateMember(@RequestBody MemberDTO memberDTO) {
-        String message = memberService.updateMember(memberDTO);
-        return ResponseEntity.ok(message);
+    @PutMapping(path = "/update/{id}")
+    public ResponseEntity<?> updateMember(@RequestBody MemberDTO memberDTO, @PathVariable Long id) {
+        String member = memberService.updateMember(memberDTO, id);
+        return ResponseEntity.ok(member);
+    }
+    @DeleteMapping(path = "/delete/{id}")
+    public ResponseEntity<?> deleteMember(@PathVariable Long id) {
+        String member = memberService.deleteMember(id);
+        return ResponseEntity.ok(member);
     }
 
     @PostMapping(path = "/login")
@@ -38,7 +41,12 @@ public class MemberController {
         LoginResponse  loginResponse = memberService.loginMember(loginDTO);
         return ResponseEntity.ok(loginResponse);
     }
-    
-    
+
+//    @GetMapping(path = "/{id}")
+//    public ResponseEntity<?> seeMember(@PathVariable Long id, MemberDTO memberDTO) {
+//        memberDTO = memberService.seeMember(id);
+//        return ResponseEntity.ok(memberDTO);
+//    }
+
 
 }

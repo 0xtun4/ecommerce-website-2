@@ -8,15 +8,9 @@ import com.tuna.Entity.Member;
 import com.tuna.Service.MemberService;
 import com.tuna.repositories.MemberRepo;
 import com.tuna.repositories.response.LoginResponse;
-import com.tuna.repositories.response.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.Optional;
 
 @Service
 public class MemberImpl implements MemberService {
@@ -28,55 +22,81 @@ public class MemberImpl implements MemberService {
     @Override
     public String addMember(MemberDTO memberDTO) {
         Member member = new Member(
-                memberDTO.getMember_id(),
+                (int) memberDTO.getMember_id(),
                 memberDTO.getMember_name(),
                 memberDTO.getEmail(),
                 this.passwordEncoder.encode(memberDTO.getPassword()),
                 null,
                 null,
-                true
+                null
         );
         this.memberRepo.save(member);
         return member.getMember_name();
     }
 
-//    @Override
-    public String updateMember(MemberDTO memberDTO) {
-        return null;
-//        try {
-//            Optional<Member> optionalMember = this.memberRepo.findById(memberDTO.getMember_id());
-//
-//            if (optionalMember.isPresent()) {
-//                Member existingMember = optionalMember.get();
-//                existingMember.setMember_name(memberDTO.getMember_name());
-//                existingMember.setEmail(memberDTO.getEmail());
-//                existingMember.setPhone(memberDTO.getPhone());
-//                existingMember.setAddress(memberDTO.getAddress());
-//                existingMember.setStatus(memberDTO.isStatus());
-//                this.memberRepo.save(existingMember);
-//                return ResponseEntity.ok("Cập nhật thành viên thành công!");
-//            } else {
-//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Thành viên không tồn tại.");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật thành viên: " + e.getMessage());
-//        }
+    @Override
+    public String updateMember(MemberDTO memberDTO, Long id) {
+        Member member = this.memberRepo.findById(id).orElse(null);
+        if (member != null) {
+            member.setMember_name(memberDTO.getMember_name());
+            member.setEmail(memberDTO.getEmail());
+//            member.setPassword(this.passwordEncoder.encode(memberDTO.getPassword()));
+            member.setPhone(memberDTO.getPhone());
+            member.setAddress(memberDTO.getAddress());
+            member.setStatus(memberDTO.getStatus());
+            this.memberRepo.save(member);
+            return "Cập nhật thành công!";
+        }
+        return "Không tìm thấy thành viên!";
     }
-
 
 
     @Override
-    public String deleteMember(long memberId) {
-        try {
-            this.memberRepo.deleteById(memberId);
-            return "Xóa thành viên thành công!";
-        } catch (Exception e) {
-            // Xử lý ngoại lệ khi xóa thành viên
-            e.printStackTrace();
-            return "Lỗi khi xóa thành viên: " + e.getMessage();
+    public String deleteMember(Long memberId) {
+        Member member = this.memberRepo.findById(memberId).orElse(null);
+        if (member != null) {
+            this.memberRepo.delete(member);
+            return "Xóa thành công thành viên: " + member.getMember_name();
         }
+            return "Lỗi khi xóa thành viên: " ;
+//        }
     }
+
+//    @Override
+//    public String seeMember(Long id, MemberDTO memberDTO) {
+//        Member member = this.memberRepo.findById(id).orElse(null);
+//        if (member != null) {
+//            member.getMember_name();
+//            member.getEmail();
+//            member.getPassword();
+//            member.getPhone();
+//            member.getAddress();
+//            member.getStatus();
+//            return "Lấy thành công thành viên: " + member.getMember_name();
+//        }
+//        return "Lỗi khi lấy thành viên: " ;
+//    }
+
+//    @Override
+//    public MemberDTO findMemberByName(String memberName) {
+//        Member member = memberRepo.findByMemberName(memberName); // Tìm thành viên theo tên
+//
+//        if (member != null) {
+//            // Tạo một đối tượng MemberDTO để trả về thông tin thành viên
+//            MemberDTO memberDTO = new MemberDTO();
+//            memberDTO.setMember_id(member.getMember_id());
+//            memberDTO.setMember_name(member.getMember_name());
+//            memberDTO.setEmail(member.getEmail());
+//            memberDTO.setPhone(member.getPhone());
+//            memberDTO.setAddress(member.getAddress());
+//            memberDTO.setStatus(member.getStatus());
+//
+//            return memberDTO;
+//        }
+//
+//        return null; // Trả về null nếu không tìm thấy thành viên
+//    }
+
 
     @Override
     public LoginResponse loginMember(LogInDTO loginDTO) {
@@ -99,5 +119,7 @@ public class MemberImpl implements MemberService {
         }
 
     }
+
+
 
 }
