@@ -2,8 +2,8 @@ package com.tuna.Entity;
 import org.springframework.data.convert.Jsr310Converters;
 
 import javax.persistence.*;
-@Entity
-@Table(name="kh")
+@Entity(name="Member")
+@Table(name="KH", schema = "cuahang")
 public class Member {
     @Id
     @Column(name="MA_KH", length = 45)
@@ -15,11 +15,11 @@ public class Member {
     private String email;
     @Column(name="MATKHAU", length = 255)
     private String password;
-    @Column(name="SDT", length = 255)
+    @Column(name="DIENTHOAI", length = 255)
     private String phone;
     @Column(name="DIACHI", length = 255)
     private String address;
-    @Column(name="STATUS", length = 255)
+    @Column(name="TRANGTHAI", length = 255)
     private String status;
     public Member() {
     }

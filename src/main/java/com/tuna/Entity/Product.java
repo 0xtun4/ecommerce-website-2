@@ -1,9 +1,12 @@
-package com.tuna.Model;
+package com.tuna.Entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
-@Table(name = "sp")
+@Entity(name = "Product")
+@Table(name = "SP", schema = "cuahang")
 public class Product {
     @Id
     @Column(name = "MA_SP", length = 45)

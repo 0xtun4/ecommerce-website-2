@@ -1,13 +1,12 @@
 package com.tuna.Controller;
 
-import com.tuna.Model.Product;
+import com.tuna.Entity.Product;
 import com.tuna.repositories.ProductRepository;
 import com.tuna.repositories.response.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +15,6 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
-
     @GetMapping("/getAllProducts")
     List<Product> getAllProductsSortedByName(@RequestParam(name = "ascending", defaultValue = "true") boolean ascending) {
         List<Product> products;
