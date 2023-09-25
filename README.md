@@ -25,10 +25,9 @@ This document provides an overview of the endpoints and functionality of the Tun
 | `/api/public/login`            | POST   | Member login.                 |
 
 ### Request Body
-
-- `/api/public/add`:  for adding a new member.
-- `/api/public/update/{id}`:  for updating an existing member.
-- `/api/public/login`:  for member login.
+GET /api/public/add: Requires the following fields in the request body: member_name, email, password.
+GET /api/public/update/{id}: Requires a request body for updating an existing member.
+GET /api/public/login: Requires the following fields in the request body: email, password.
 
 ## Authentication
 
@@ -40,3 +39,4 @@ Authentication is required for some endpoints. Provide a valid JWT token in the 
 
 ```http
 GET /api/Product/getAllProducts?ascending=true
+keyword (required for search): A keyword to search for products by name.
