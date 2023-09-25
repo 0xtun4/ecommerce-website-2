@@ -26,7 +26,9 @@ This document provides an overview of the endpoints and functionality of the Tun
 
 ### Request Body
 GET /api/public/add: Requires the following fields in the request body: member_name, email, password.
+
 GET /api/public/update/{id}: Requires a request body for updating an existing member.
+
 GET /api/public/login: Requires the following fields in the request body: email, password.
 
 ## Authentication
