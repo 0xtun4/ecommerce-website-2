@@ -39,4 +39,3 @@ Authentication is required for some endpoints. Provide a valid JWT token in the 
 
 ```http
 GET /api/Product/getAllProducts?ascending=true
-keyword (required for search): A keyword to search for products by name.
