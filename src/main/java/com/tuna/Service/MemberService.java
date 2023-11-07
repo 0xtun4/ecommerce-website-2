@@ -3,7 +3,7 @@ package com.tuna.Service;
 import com.tuna.DTO.LogInDTO;
 import com.tuna.DTO.MemberDTO;
 import com.tuna.Models.Member;
-import com.tuna.repositories.response.LoginResponse;
+import com.tuna.Repositories.Response.LoginResponse;
 
 import java.util.Optional;
 

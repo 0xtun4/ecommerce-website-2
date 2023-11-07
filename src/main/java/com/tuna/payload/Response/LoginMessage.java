@@ -1,4 +1,4 @@
-package com.tuna.payload.response;
+package com.tuna.payload.Response;
 
 public class LoginMessage {
     String message;

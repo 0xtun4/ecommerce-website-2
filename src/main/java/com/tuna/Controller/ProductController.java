@@ -2,9 +2,9 @@ package com.tuna.Controller;
 
 import com.tuna.Models.Category;
 import com.tuna.Models.Product;
-import com.tuna.repositories.ProductRepository;
-import com.tuna.repositories.CategoryRepository;
-import com.tuna.repositories.response.ResponseObject;
+import com.tuna.Repositories.ProductRepository;
+import com.tuna.Repositories.CategoryRepository;
+import com.tuna.Repositories.Response.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

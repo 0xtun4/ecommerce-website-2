@@ -1,4 +1,4 @@
-package com.tuna.Service.impl;
+package com.tuna.Service.Ipml;
 
 
 
@@ -6,8 +6,8 @@ import com.tuna.DTO.LogInDTO;
 import com.tuna.DTO.MemberDTO;
 import com.tuna.Models.Member;
 import com.tuna.Service.MemberService;
-import com.tuna.repositories.MemberRepo;
-import com.tuna.repositories.response.LoginResponse;
+import com.tuna.Repositories.MemberRepo;
+import com.tuna.Repositories.Response.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

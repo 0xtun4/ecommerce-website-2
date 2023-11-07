@@ -1,4 +1,4 @@
-package com.tuna.repositories.response;
+package com.tuna.Repositories.Response;
 
 public class LoginResponse {
     String message;

@@ -1,4 +1,4 @@
-package com.tuna.repositories;
+package com.tuna.Repositories;
 
 import com.tuna.Models.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

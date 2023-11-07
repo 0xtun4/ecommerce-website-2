@@ -1,7 +1,7 @@
 package com.tuna.Service;
 
 import com.tuna.Models.Bill;
-import com.tuna.repositories.BillRepository;
+import com.tuna.Repositories.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
