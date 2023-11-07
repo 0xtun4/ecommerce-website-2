@@ -1,4 +1,4 @@
-package com.tuna.Entity;
+package com.tuna.Models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

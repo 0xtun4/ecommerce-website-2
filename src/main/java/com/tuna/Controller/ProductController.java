@@ -1,7 +1,9 @@
 package com.tuna.Controller;
 
-import com.tuna.Entity.Product;
+import com.tuna.Models.Category;
+import com.tuna.Models.Product;
 import com.tuna.repositories.ProductRepository;
+import com.tuna.repositories.CategoryRepository;
 import com.tuna.repositories.response.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,10 +13,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/Product")
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
     @GetMapping("/getAllProducts")
     List<Product> getAllProductsSortedByName(@RequestParam(name = "ascending", defaultValue = "true") boolean ascending) {
         List<Product> products;
@@ -37,7 +42,11 @@ public class ProductController {
 
     @GetMapping("/searchProducts")
     List<Product> searchProducts(@RequestParam(name = "keyword") String keyword) {
-        List<Product> products = productRepository.findByProductNameContainingIgnoreCase(keyword);
-        return products;
+        return productRepository.search(keyword);
+    }
+
+    @GetMapping("/getAllCategory")
+    List<Category> getAllCategory() {
+        return categoryRepository.findAll();
     }
 }

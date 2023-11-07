@@ -1,7 +1,7 @@
-package com.tuna.Entity;
-import org.springframework.data.convert.Jsr310Converters;
+package com.tuna.Models;
 
 import javax.persistence.*;
+
 @Entity(name="Member")
 @Table(name="KH", schema = "cuahang")
 public class Member {

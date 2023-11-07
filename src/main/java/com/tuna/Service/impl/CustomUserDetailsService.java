@@ -1,6 +1,6 @@
 package com.tuna.Service.impl;
 
-import com.tuna.Entity.Member;
+import com.tuna.Models.Member;
 import com.tuna.repositories.MemberRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
