@@ -36,12 +36,65 @@ This document provides an overview of the endpoints and functionality of the Tun
 
 Authentication is required for some endpoints. Provide a valid JWT token in the `Authorization` header to access protected resources.
 
-### Sample Usage
-- `/api/public/register`:  Requires the following fields in the request body: member_name, email, password.
-- `/api/public/update/{id}`:  for updating an existing member.
-- `/api/public/changePassword/{id}`: for changing password by ID in the reuqest body: password.
-- `/api/public/login`:  Requires the following fields in the request body: email, password.
+### Some Sample Usage
 #### Get all products (sorted by name):
 
 ```http
-GET /api/Product/getAllProducts?ascending=true
+GET http:localhost:/api/Product/getAllProducts?ascending=true
+```
+### Response
+
+```javascript
+[
+  {
+    "product_id": 1,
+    "product_name": "Tuna",
+    "product_price": 10,
+    "product_description": "Tuna is a saltwater fish that belongs to the tribe Thunnini, a subgrouping of the Scombridae family. The Thunnini comprise 15 species across five genera, the sizes of which vary greatly, ranging from the bullet tuna up to the Atlantic bluefin tuna.",
+    "product_image": example.jpg,
+    "product_category": "Fish",
+    "product_quantity": 100
+  }
+]
+```
+
+#### Resister a new member:
+
+```http
+POST http:localhost:/api/public/register
+```
+### Request Body
+
+```javascript
+[
+{
+  "member_name": "John",
+  "email": "john@tuna.com",
+  "password": "123456"
+}
+]
+```
+### Login:
+
+```http
+POST http:localhost:/api/public/login
+```
+### Request Body
+
+```javascript
+[
+{
+  "email": "john@tuna.com",
+  "password": "123456"
+}
+]
+```
+### Response
+
+```javascript
+[
+{
+  success: true,
+}
+]
+```
