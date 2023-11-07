@@ -94,7 +94,10 @@ POST http:localhost:8080/api/public/login
 ```javascript
 [
 {
-  success: true,
+    "message": "login success full",
+    "status": true,
+    "user_id": 1,
+    "user_email": john@tuna.com
 }
 ]
 ```
