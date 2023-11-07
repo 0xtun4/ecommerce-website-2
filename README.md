@@ -37,7 +37,10 @@ This document provides an overview of the endpoints and functionality of the Tun
 Authentication is required for some endpoints. Provide a valid JWT token in the `Authorization` header to access protected resources.
 
 ### Sample Usage
-
+- `/api/public/register`:  Requires the following fields in the request body: member_name, email, password.
+- `/api/public/update/{id}`:  for updating an existing member.
+- `/api/public//changePassword/{id}`: for changing password by ID in the reuqest body: password.
+- `/api/public/login`:  Requires the following fields in the request body: email, password.
 #### Get all products (sorted by name):
 
 ```http
