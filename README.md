@@ -40,7 +40,7 @@ Authentication is required for some endpoints. Provide a valid JWT token in the 
 #### Get all products (sorted by name):
 
 ```http
-GET http:localhost:/api/Product/getAllProducts?ascending=true
+GET http:localhost:8080/api/Product/getAllProducts?ascending=true
 ```
 ### Response
 
@@ -61,7 +61,7 @@ GET http:localhost:/api/Product/getAllProducts?ascending=true
 #### Resister a new member:
 
 ```http
-POST http:localhost:/api/public/register
+POST http:localhost:8080/api/public/register
 ```
 ### Request Body
 
@@ -77,7 +77,7 @@ POST http:localhost:/api/public/register
 ### Login:
 
 ```http
-POST http:localhost:/api/public/login
+POST http:localhost:8080/api/public/login
 ```
 ### Request Body
 
