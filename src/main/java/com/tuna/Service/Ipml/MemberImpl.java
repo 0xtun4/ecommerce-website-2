@@ -32,8 +32,13 @@ public class MemberImpl implements MemberService {
                 null,
                 null
         );
-        this.memberRepo.save(member);
-        return member.getMember_name();
+        if (this.memberRepo.findByEmail(memberDTO.getEmail()) != null) {
+            return "Email đã tồn tại!";
+        }
+        else {
+            this.memberRepo.save(member);
+            return "Thêm thành công thành viên: " + member.getMember_name();
+        }
     }
 
     @Override
