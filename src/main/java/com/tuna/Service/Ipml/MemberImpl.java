@@ -23,23 +23,24 @@ public class MemberImpl implements MemberService {
 
     @Override
     public String addMember(MemberDTO memberDTO) {
+        Member existingMember = this.memberRepo.findByEmail(memberDTO.getEmail());
+        if (existingMember != null) {
+            return "Email đã tồn tại!";
+        }
+        String encodedPassword = this.passwordEncoder.encode(memberDTO.getPassword());
         Member member = new Member(
                 (int) memberDTO.getMember_id(),
                 memberDTO.getMember_name(),
                 memberDTO.getEmail(),
-                this.passwordEncoder.encode(memberDTO.getPassword()),
+                encodedPassword,
                 null,
                 null,
                 null
         );
-        if (this.memberRepo.findByEmail(memberDTO.getEmail()) != null) {
-            return "Email đã tồn tại!";
-        }
-        else {
-            this.memberRepo.save(member);
-            return "Thêm thành công thành viên: " + member.getMember_name();
-        }
+        this.memberRepo.save(member);
+        return "Thêm thành công thành viên: " + member.getMember_name();
     }
+
 
     @Override
     public String updateMember(MemberDTO memberDTO, Long id) {
