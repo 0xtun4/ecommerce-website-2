@@ -7,4 +7,4 @@ RUN unzip photogenic.zip \
     && cp -rvf photogenic/* . \
     && rm -rf photogenic photogenic.zip
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
-EXPOSE 80  # Expose port 80 for web traffic
+EXPOSE 80
