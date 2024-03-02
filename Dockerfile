@@ -1,14 +1,12 @@
-FROM centos/php-74-centos7
 
-WORKDIR /var/www/html
-
-COPY webapp/ /var/www/html/
-
-RUN yum install -y epel-release && \
-    yum install -y php-gd php-pdo php-pdo_mysql && \
-    yum clean all && \
-    chown -R apache:apache /var/www/html
-
+FROM centos:latest
+MAINTAINER vikashashoke@gmail.com
+RUN yum install -y httpd \
+zip\ unzip
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/
+WORKDIR /var/www/html/
+RUN unzip photogenic.zip
+RUN cp -rvf photogenic/* .
+RUN rm -rf photogenic photogenic.zip
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 EXPOSE 80
-
-CMD ["httpd", "-DFOREGROUND"]
