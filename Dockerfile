@@ -1,14 +1,15 @@
 # Use an official CentOS-based PHP runtime as a parent image
-FROM centos:latest
+FROM php:7.4-apache
 
 # Set the working directory in the container
 WORKDIR /var/www/html
 
 # Copy your PHP application code into the container
-COPY . .
+COPY webapp/ /var/www/html/
 
 # Install PHP extensions and other dependencies
-RUN yum install -y epel-release && \
+RUN chown -R www-data:www-data /var/www &&\
+    yum install -y epel-release && \
     yum install -y php-gd php-pdo php-pdo_mysql && \
     yum clean all
 
