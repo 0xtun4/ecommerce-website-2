@@ -1,5 +1,5 @@
 # Use an official CentOS-based PHP runtime as a parent image
-FROM amazonlinux:2
+FROM centos:lastest
 
 # Set the working directory in the container
 WORKDIR /var/www/html
