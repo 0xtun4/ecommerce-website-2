@@ -70,7 +70,6 @@ else {
 <?php 
 
     if(isset($_POST['update'])) {
-        
         $man_name = $_POST['man_name'];
         $man_id = $_POST['man_id'];
 
@@ -79,7 +78,7 @@ else {
 
         $executeUpdate = $MyConn->query($update_man);
 
-        if($executeUpdate) {
+        if($executeUpdate ) {
             echo "<script>alert('Cập Nhật Thông Tin Hãng Thành Công')</script>";
 
             echo "<script>window.open('index.php?view_man','_self')</script>";

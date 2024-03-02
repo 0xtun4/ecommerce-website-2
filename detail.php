@@ -20,7 +20,7 @@ if (isset($_GET['productID'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>eCommerce</title>
+  <title>Koolmate</title>
   <meta charset="utf-8">
 
   <style>

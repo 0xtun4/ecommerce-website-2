@@ -401,7 +401,7 @@ $resultMan = $MyConn->query($queryMan);
         </div>
         <hr style="background-color: white; height: 1px; margin: 0; padding: 0;">
         <div class="container-fluid text-center text-light p-1">
-            <h7>Copyright © 2021. Powered by eCommerce</h7>
+            <h7>Copyright © 2023. Powered by eCommerce</h7>
         </div>
     </footer>
 

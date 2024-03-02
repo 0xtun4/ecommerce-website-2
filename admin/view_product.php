@@ -59,7 +59,7 @@ else {
                             <tr>
                                 <td> <?php echo $p_name ?></td>
                                 <td> <?php echo $p_id ?> </td>
-                                <td><img src="<?php echo "product_images/$p_image" ?>" width="60" height="60" class="rounded shadow"></td>
+                                <td><img src="<?php echo $p_image ?>" width="60" height="60" class="rounded shadow"></td>
                                 <td> <?php echo $p_cat ?></td>
                                 <td> <?php echo $p_man ?></td>
                                 <td> <?php echo number_format($p_price,0,",","."); ?><sup>đ</sup></td>

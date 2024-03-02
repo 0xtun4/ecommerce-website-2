@@ -19,23 +19,12 @@ else {
                 <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Tên Loại Sản Phẩm:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Tên Loại Sản Phẩm*:</label>
                             <div class="col-sm-6">
                             <input type="text" class="form-control" name="cat_name" required>
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Mã Loại Sản Phẩm:</label>
-                            <div class="col-sm-6">
-                            <input type="text" class="form-control" name="cat_id" required>
-                            </div>
-                        </div>
-                    </div>
-
-
                     <div class="form-group">
                         <div class="row">
                             <label class="control-label col-sm-3 text-right mt-2"></label>
@@ -58,7 +47,7 @@ else {
     if(isset($_POST['submit'])) {
         
         $cat_name = $_POST['cat_name'];
-        $cat_id = $_POST['cat_id'];
+        $cat_id = rand(1,10000);
 
         
         $insert_cat = "insert into LOAISP (MA_LOAISP,TEN_LOAISP) values ('$cat_id','$cat_name')";

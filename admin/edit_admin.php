@@ -61,7 +61,7 @@ else {
                         <div class="row">
                             <label class="control-label col-sm-3 text-right mt-2">Email:</label>
                             <div class="col-sm-6">
-                            <input type="text" class="form-control" name="admin_email" required value="<?php echo $cur_email; ?>">
+                            <input type="email" class="form-control" name="admin_email" required value="<?php echo $cur_email; ?>">
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ else {
                         <div class="row">
                             <label class="control-label col-sm-3 text-right mt-2">Số Điện Thoại:</label>
                             <div class="col-sm-6">
-                            <input type="text" class="form-control" name="admin_contact" required value="<?php echo $cur_contact; ?>">
+                            <input type="number" class="form-control" name="admin_contact" required value="<?php echo $cur_contact; ?>">
                             </div>
                         </div>
                     </div>

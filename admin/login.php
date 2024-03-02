@@ -87,12 +87,12 @@
     if(isset($_POST['admin_login'])) {
 
         $MyConn = new MyConnect();
-
-
-        $admin_email = mysqli_real_escape_string($MyConn->getConn(),$_POST['admin_email']);
-        $admin_pass = mysqli_real_escape_string($MyConn->getConn(),$_POST['passwd']);
-
-        $query = "select * from admin where Email='$admin_email' AND Passwd='$admin_pass'";
+//        $admin_email = "admin@admin.com";
+//        $admin_psdd = "admin";
+      $admin_email = mysqli_real_escape_string($MyConn->getConn(), $_POST['admin_email']);
+        $admin_pass = mysqli_real_escape_string($MyConn->getConn(), $_POST['passwd']);
+        
+        $query = "SELECT * FROM admin WHERE Email='$admin_email'";
 
         $result = $MyConn->query($query);
 
@@ -103,10 +103,13 @@
 
 
         if($count == 1) {
+
             $_SESSION['admin_email'] = $admin_email;
-
+            $row = mysqli_fetch_assoc($result);
+            $admin_id = $row['ID']; // Lấy ID từ kết quả truy vấn
+            $_SESSION['admin_id'] = $admin_id; // Lưu ID vào session
+            $stored_hashed_password = $row['Passwd'];
             echo "<script>alert('Bạn Đang Đăng Nhập Vào Trang Quản Trị Viên')</script>";
-
             echo "<script>window.open('index.php?dashboard','_self')</script>";
             
         }

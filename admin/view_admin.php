@@ -65,7 +65,7 @@ else {
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="index.php?edit_admin=<?php echo $admin_id ?>" style="text-decoration: none">
+                                    <a href="index.php?update_admin=<?php echo $admin_id ?>" style="text-decoration: none">
                                         <i class="fas fa-edit" ></i>
                                             Sửa
                                         </a>

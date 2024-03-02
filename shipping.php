@@ -9,15 +9,8 @@ if(!isset($_SESSION['cart']) || !isset($_SESSION['user_id'])) {
 }
 else 
 $MyConn = new MyConnect();
-
 $userID = $_SESSION['user_id'];
-
-
-
 $getUser = "SELECT * FROM KH WHERE MA_KH='$userID'";
-
-
-
 $execute = $MyConn->query($getUser);
 
 $result = mysqli_fetch_array($execute);
@@ -146,36 +139,83 @@ $result = mysqli_fetch_array($execute);
             </div>
 
 
-            <div class="my-5 d-block">
-                <form action="POST">
-                    <div class="row">
-                        <div class="col-lg-6 mx-auto">
-                        <form method="get">
-                            <div class="form-group">
-                                <label for="customerName">Họ và tên</label>
-                                <input type="text" class="form-control" placeholder="Điền họ và tên khách hàng" required value="<?php echo $result['TEN_KH']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="customerEmail">Email</label>
-                                <input type="text" class="form-control" placeholder="Điền Email khách hàng" required value="<?php echo $result['EMAIL']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="customerContact">Số Điện Thoại</label>
-                                <input type="text" class="form-control" placeholder="Điền số điện thoại khách hàng" required value="<?php echo $result['DIENTHOAI']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="customerAddress">Địa Chỉ</label>
-                                <input type="text" class="form-control" placeholder="Điền địa chỉ khách hàng" required value="<?php echo $result['DIACHI']; ?>">
-                            </div>
-
-                            <a href="payment.php" type="submit" class="mt-4 btn btn-block btn-info btn-lg font-weight-bold" name="move">Tiếp Tục</a>
-                            </form>
+        <div class="my-5 d-block">
+            <form id="myForm" method="post" action="payment.php">
+                <div class="row">
+                    <div class="col-lg-6 mx-auto">
+                        <div class="form-group">
+                            <label for="customerName">Họ và tên*:</label>
+                            <input type="text" class="form-control"   name="customerName" value="<?php echo $result['TEN_KH']; ?>">
                         </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email*:</label>
+                            <input type="text" class="form-control"  name="customerEmail" value="<?php echo $result['EMAIL']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerContact">Số Điện Thoại*:</label>
+                            <input type="text" class="form-control"   name="customerContact" value="<?php echo $result['DIENTHOAI']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerAddress">Địa Chỉ*:</label>
+                            <input type="text" class="form-control"  name="customerAddress" value="<?php echo $result['DIACHI']; ?>">
+                        </div>
+                        <button type="submit" class="mt-4 btn btn-block btn-info btn-lg font-weight-bold" name="post">Tiếp Tục</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            document.getElementById("myForm").addEventListener("submit", function(event) {
+                const customerName = document.querySelector('[name="customerName"]').value.trim();
+                const customerEmail = document.querySelector('[name="customerEmail"]').value.trim();
+                const customerContact = document.querySelector('[name="customerContact"]').value.trim();
+                const customerAddress = document.querySelector('[name="customerAddress"]').value.trim();
+
+                let errorMessages = [];
+
+                if (customerName === "") {
+                    errorMessages.push("Tên không được để trống.");
+                }
+                    else if (!/^[A-Za-zÀ-Ỹà-ỹ\s]+$/.test(customerName)) {
+                    errorMessages.push("Tên chỉ chấp nhận chữ cái.");
+                }
+
+                if (customerAddress === "") {
+                    errorMessages.push("Địa chỉ không được để trống.");
+                }
+                else if (!/^[A-Za-zÀ-Ỹà-ỹ0-9\s]+$/.test(customerAddress)) {
+                    errorMessages.push("Địa chỉ chỉ chấp nhận chữ cái và số.");
+                }
+
+                if (customerEmail === "") {
+                    errorMessages.push("Email không được để trống");
+                } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(customerEmail)) {
+                    errorMessages.push("Email không hợp lệ.");
+                }
+
+                if (customerContact === "") {
+                    errorMessages.push("Số điện thoại không được để trống.");
+                } else if (!/^0[0-9]{9}$/.test(customerContact)) {
+                    errorMessages.push("Số điện thoại không hợp lệ.");
+                }
+
+                if (errorMessages.length > 0) {
+                    alert(errorMessages.join("\n"));
+                    event.preventDefault();
+                }
+            });
+
+
+        </script>
+
+
+
+
     </div>
-    
+
+
+
     <footer class="bg-dark">
         <div class="container-fuild text-light">
             <div class="row card-deck pt-3">
@@ -216,18 +256,17 @@ $result = mysqli_fetch_array($execute);
         </div>
     </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-    <?php include("login_registry_modal.php"); ?>
- 
 </body>
+
+
+
+
+
+
+
+
+
+
+    <?php include("login_registry_modal.php");
+    ?>
 </html>
