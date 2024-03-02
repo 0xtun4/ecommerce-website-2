@@ -1,5 +1,5 @@
 # Use an official CentOS-based PHP runtime as a parent image
-FROM centos:lastest
+FROM centos:latest
 
 # Set the working directory in the container
 WORKDIR /var/www/html
