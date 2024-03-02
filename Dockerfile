@@ -1,20 +1,14 @@
-# Use an official CentOS-based PHP runtime as a parent image
-FROM php:7.4-apache
+FROM centos/php-74-centos7
 
-# Set the working directory in the container
 WORKDIR /var/www/html
 
-# Copy your PHP application code into the container
 COPY webapp/ /var/www/html/
 
-# Install PHP extensions and other dependencies
-RUN chown -R www-data:www-data /var/www &&\
-    yum install -y epel-release && \
+RUN yum install -y epel-release && \
     yum install -y php-gd php-pdo php-pdo_mysql && \
-    yum clean all
+    yum clean all && \
+    chown -R apache:apache /var/www/html
 
-# Expose the port Apache listens on
 EXPOSE 80
 
-# Start Apache when the container runs
 CMD ["httpd", "-DFOREGROUND"]
