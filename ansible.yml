@@ -1,4 +1,5 @@
 - hosts: all
+  connection: ssh
   become: true
   tasks: 
      - name: delete old deployment
