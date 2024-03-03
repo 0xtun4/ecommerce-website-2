@@ -1,0 +1,5 @@
+- hosts: all
+  connection: ssh
+  tasks:
+    - name: Pull image from Dockerhub
+      command: sudo docker pull tunat/phpweb:latest
