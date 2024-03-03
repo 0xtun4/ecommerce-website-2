@@ -1,7 +1,9 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-   name: phpweb
+   name: phpweb-deploy
+    labels:
+      app: phpweb-deploy-label
 spec:
    replicas: 1
    selector:   
@@ -13,7 +15,7 @@ spec:
           app: phpweb
       spec:
        containers:
-        - name: my-container
+        - name: phpweb
           image: tunat/phpweb:latest 
           imagePullPolicy: Always
           ports:

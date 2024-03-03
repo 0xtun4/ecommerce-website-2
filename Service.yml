@@ -1,14 +1,14 @@
 kind: Service                             
 apiVersion: v1
 metadata:
-  name: phpweb
+  name: phpweb-service
   labels:
-    app: phpwebapp
+    app: phpweb-service-label
 spec:
   ports:
     - port: 8080                               
       targetPort: 80                    
       nodePort: 31200
   selector:
-    app: phpweb                    
+    app: phpweb                  
   type: LoadBalancer                   
