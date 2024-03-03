@@ -9,6 +9,8 @@ spec:
     - port: 8080                               
       targetPort: 80                    
       nodePort: 31200
+  externalIPs:
+    - 52.221.241.81
   selector:
     app: phpweb                  
   type: LoadBalancer                   
