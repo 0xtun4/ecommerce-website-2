@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: phpweb
   labels:
-    app: phpweb
+    app: phpwebapp
 spec:
   ports:
     - port: 8080                               
