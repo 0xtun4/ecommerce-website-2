@@ -1,6 +1,6 @@
 - hosts: all
   connection: ssh
-  become: true
+  become: false
   vars:
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
   tasks: 
