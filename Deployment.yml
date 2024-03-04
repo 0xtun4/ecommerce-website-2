@@ -1,9 +1,9 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: phpweb-deploy
+  name: phpweb
   labels:
-    app: phpweb-deploy-label
+    app: phpweb
 spec:
   replicas: 1
   selector:

@@ -1,11 +1,9 @@
 kind: Service                             
 apiVersion: v1
 metadata:
-  name: phpweb-service
-  annotations:
-        service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+  name: phpweb
   labels:
-    app: phpweb-service-label
+    app: phpweb
 spec:
   ports:
     - port: 8080                               
