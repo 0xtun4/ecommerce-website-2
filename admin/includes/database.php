@@ -8,8 +8,8 @@
         private $port;
 
         public function __construct() {
-            $this->host = "store.cpllnfpfhhm8.ap-southeast-1.rds.amazonaws.com";
-            $this->port = 3307;
+            $this->host = "cuahang.chy020meocy7.ap-southeast-1.rds.amazonaws.com";
+            $this->port = 3306;
             $this->user = "tuqtuo";
             $this->passwd = "Root1234";
             $this->database = "cuahang";
