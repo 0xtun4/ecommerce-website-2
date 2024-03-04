@@ -1,0 +1,8 @@
+{
+  "require": {
+    "php-curl-class/php-curl-class": "^4.12",
+    "ext-curl": "*",
+    "ext-mysqli": "*"
+  }
+
+}
