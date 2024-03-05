@@ -31,7 +31,7 @@ $MyConn = new MyConnect();
             <div class="row">
                 <div class="col-md-5">
                     <h2 class="font-weight-bold" style="color: #b888ff">
-                        SALE OFF
+                        SALE OFF 10000%
                         <span style="color: #fbb419;">70%</span>
                     </h2>
                     <h1 class="font-weight-bold" style="color: #253b70;  text-shadow: 4px 4px #f1f1f1; font-size: 500%;">
