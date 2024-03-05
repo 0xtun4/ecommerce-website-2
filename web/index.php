@@ -35,8 +35,7 @@ $MyConn = new MyConnect();
                         <span style="color: #fbb419;">70%</span>
                     </h2>
                     <h1 class="font-weight-bold" style="color: #253b70;  text-shadow: 4px 4px #f1f1f1; font-size: 500%;">
-                        <span>Mùa </span><br>
-                        <span>Năng Động</span>
+                        <span>Mùa ng</span>
                     </h1>
                     <a class="btn btn-primary rounded-0 border-0 p-2 px-4 mt-3" style="background-color: #fc7c7c;" href="#" role="button">Xem Ngay</a>
                 </div>
