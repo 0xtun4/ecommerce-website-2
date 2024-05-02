@@ -8,9 +8,9 @@
         private $port;
 
         public function __construct() {
-            $this->host = "cuahang.chy020meocy7.ap-southeast-1.rds.amazonaws.com";
+            $this->host = "sales-db.chy020meocy7.ap-southeast-1.rds.amazonaws.com";
             $this->port = 3306;
-            $this->user = "tuqtuo";
+            $this->user = "kafka";
             $this->passwd = "Root1234";
             $this->database = "cuahang";
             $this->conn = new mysqli($this->host, $this->user, $this->passwd, $this->database, $this->port);
