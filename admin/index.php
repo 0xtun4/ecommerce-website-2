@@ -60,6 +60,7 @@ $admin_about = $row_admin['About'];
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -256,9 +257,13 @@ $admin_about = $row_admin['About'];
                     else if(isset($_GET[''])) {
                         include("dashboard.php");
                     }
+                    else if(isset($_GET['view_contact'])) {
+                        include ("view_contact.php");
+                    }
                     else {
                         include("dashboard.php");
                     }
+
                     
                     ?>
 

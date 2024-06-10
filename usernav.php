@@ -6,12 +6,9 @@
         $query = "SELECT TEN_KH, AVATAR FROM KH WHERE EMAIL='$user_session'";
 
         $getUser = $MyConn->query($query);
-
         $row_user = mysqli_fetch_array($getUser);
-
         $_SESSION['username'] = $row_user['TEN_KH'];
         $_SESSION['user_avatar'] = $row_user['AVATAR'];
-
         
 
 
@@ -32,11 +29,11 @@
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                         aria-labelledby="userDropdown">
-                        <a class="dropdown-item small" href="#">
+                        <a class="dropdown-item small" href="view_user.php">
                             <i class="fas fa-user fa-sm fa-fw mr-2"></i>
                             Hồ Sơ
                         </a>
-                        <a class="dropdown-item small" href="#">
+                        <a class="dropdown-item small" href="edit_user.php">
                             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                             Chỉnh Sửa Hồ Sơ
                         </a>

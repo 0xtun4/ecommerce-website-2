@@ -124,7 +124,7 @@ if (isset($_GET['productID'])) {
        
        <div class="row">
            <div class="col-md-6">
-               <img src="<?php echo "admin/product_images/".$getProduct['HINHANH_SP']; ?>" class="img-fluid rounded" width="540px" height="540px">
+               <img src="<?php echo $getProduct['HINHANH_SP']; ?>" class="img-fluid rounded" width="540px" height="540px">
            </div>
            <div class="col-md-6"> 
                <div class="row">

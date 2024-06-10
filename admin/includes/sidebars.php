@@ -113,6 +113,11 @@ else {
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
+    <li class="nav-item">
+        <a class="nav-link" href="index.php?view_contact">
+            <i class="fas fa-address-book"></i>
+            <span>Liên Hệ</span></a>
+    </li>
 <li class="nav-item">
     <a class="nav-link" href="logout.php">
         <i class="fas fa-sign-out-alt"></i>

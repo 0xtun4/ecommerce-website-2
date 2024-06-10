@@ -40,25 +40,15 @@ else {
                 <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Tên Thành Viên:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Tên Thành Viên*:</label>
                             <div class="col-sm-6">
-                            <input type="text" class="form-control" name="admin_name" required value="<?php echo $cur_name; ?>">
+                            <input type="text" class="form-control" name="admin_name" required pattern="^[A-Za-zÀ-Ỹà-ỹ\s]+$" title="Tên thành viên chỉ chấp nhận chữ cái và không được để trống" value="<?php echo $cur_name; ?>">
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Mã Thành Viên:</label>
-                            <div class="col-sm-6">
-                            <input type="text" class="form-control" name="admin_id" required value="<?php echo $cur_id; ?>">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Email:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Email*:</label>
                             <div class="col-sm-6">
                             <input type="text" class="form-control" name="admin_email" required value="<?php echo $cur_email; ?>">
                             </div>
@@ -67,7 +57,7 @@ else {
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Mật Khẩu:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Mật Khẩu*:</label>
                             <div class="col-sm-6">
                             <input type="text" class="form-control" name="admin_passwd" required value="<?php echo $cur_pass; ?>">
                             </div>
@@ -76,7 +66,7 @@ else {
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Địa Chỉ:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Địa Chỉ*:</label>
                             <div class="col-sm-6">
                             <input type="text" class="form-control" name="admin_address" required value="<?php echo $cur_address; ?>">
                             </div>
@@ -85,16 +75,16 @@ else {
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Số Điện Thoại:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Số Điện Thoại*:</label>
                             <div class="col-sm-6">
-                            <input type="text" class="form-control" name="admin_contact" required value="<?php echo $cur_contact; ?>">
+                            <input type="text" class="form-control" name="admin_contact"  required pattern="0[0-9]{9}" title="Số điện thoại bắt đầu bằng số 0 và có 10 số. Không được để trống" value="<?php echo $cur_contact; ?>">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Chức Vụ:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Chức Vụ*:</label>
                             <div class="col-sm-6">
                             <input type="text" class="form-control" name="admin_pos" required value="<?php echo $cur_pos; ?>">
                             </div>
@@ -103,9 +93,9 @@ else {
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Ảnh Đại Diện:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Ảnh Đại Diện*:</label>
                             <div class="col-sm-6">
-                            <input type="file" name="admin_image" class="form-control-file">
+                            <input type="file" name="admin_image" class="form-control-file" accept="image/*">
                             <br>
                             <img src=" <?php echo "admin_images/$cur_image" ?>" width="70" height="70" class="rounded">
                             </div>
@@ -131,10 +121,6 @@ else {
                             </div>
                         </div>
                     </div>
-                    
-                    
-
-
                 </form>
             </div>
         </div>
@@ -148,8 +134,23 @@ else {
         $admin_email = $_POST['admin_email'];
 
         $admin_pass = $_POST['admin_passwd'];
+        $n = 10;
 
-        $admin_id = $_POST['admin_id'];
+        function getRandomString($n)
+        {
+            $regexPattern = '/^[A-Za-z0-9]+$/';
+            $randomString = '';
+            while (strlen($randomString) < $n) {
+                $char = chr(rand(33, 126));
+                if (preg_match($regexPattern, $char)) {
+                    $randomString .= $char;
+                }
+            }
+            return $randomString;
+        }
+        $ranD = getRandomString($n);
+
+        $admin_id = $ranD;
 
         $admin_address = $_POST['admin_address'];
 

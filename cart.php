@@ -186,7 +186,7 @@ else {
                                 foreach($cart as $product) {
                             ?>
                                 <tr class="font-weight-bold">
-                                    <td><img src="<?php echo "admin/product_images/".$product["image"] ?>" style="width: 50px; height: auto;"></td>
+                                    <td><img src="<?php echo $product["image"] ?>" style="width: 50px; height: auto;"></td>
                                     <td class="align-middle"><?php echo $product["name"]; ?></td>
                                     <td class="align-middle"><?php echo number_format($product["price"],0,",",".")."<sup>đ</sup>"; ?></td>
                                     <input type="hidden" class="iprice" value="<?php echo $product["price"] ?>">

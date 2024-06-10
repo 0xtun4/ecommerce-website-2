@@ -5,12 +5,11 @@ session_start();
 include("admin/includes/database.php");
 $MyConn = new MyConnect();
 
-$queryCat = "SELECT TEN_LOAISP, COUNT(SP.MA_SP) AS SOLUONG FROM LOAISP, SP WHERE SP.MA_LOAISP = LOAISP.MA_LOAISP GROUP BY LOAISP.MA_LOAISP";
+$queryCat = "SELECT *, COUNT(SP.MA_SP) AS SOLUONG FROM LOAISP, SP WHERE SP.MA_LOAISP = LOAISP.MA_LOAISP GROUP BY LOAISP.MA_LOAISP";
 $result = $MyConn->query($queryCat);
 
-$queryMan = "SELECT TEN_HANGSX FROM HANGSX";
+$queryMan = "SELECT * FROM HANGSX";
 $resultMan = $MyConn->query($queryMan);
-
 
 ?>
 <!DOCTYPE html>
@@ -147,7 +146,7 @@ $resultMan = $MyConn->query($queryMan);
     <!-- Main content Product page -->
     <div class="container-fluid my-5">
         <div class="row ml-4">
-            <div class="col-md-3">
+            <form class="col-md-3" method="GET">
                 <div class="row">
                     <div class="card border-0">
                         <div class="card-header bg-transparent ">
@@ -161,9 +160,9 @@ $resultMan = $MyConn->query($queryMan);
                                     $catName = $getCat['TEN_LOAISP'];
                                     $catQty = $getCat['SOLUONG'];
                             ?>
-
                                 <li class="list-group-item d-flex align-items-center border-0 form-check">
-                                    <input type="checkbox" id="catCheck" class="mr-2">
+                                    <input name="loai-sp[]" type="checkbox" id="catCheck" class="mr-2" value="<?php echo $getCat['MA_LOAISP']; ?>"
+                                    />
                                     <label class="form-check-label" for="catCheck"><?php echo $catName; ?></label>
                                     <span class="badge badge-primary badge-pill ml-auto"
                                         style="background-color: #ffc108 !important;"><?php echo $catQty ?></span>
@@ -187,7 +186,7 @@ $resultMan = $MyConn->query($queryMan);
                                         $manName = $getMan['TEN_HANGSX'];
                                 ?>
                                 <li class="list-group-item d-flex align-items-center border-0 form-check">
-                                    <input type="checkbox" id="catCheck" class="mr-2">
+                                    <input name="hangsx[]" type="checkbox" id="catCheck" class="mr-2" value="<?php echo $getMan['MA_HANGSX'];?>">
                                     <label class="form-check-label" for="catCheck"><?php echo $manName; ?></label>
                                 </li>
                                 <?php } ?>
@@ -201,47 +200,86 @@ $resultMan = $MyConn->query($queryMan);
                         <div class="card-body p2">
                             <span>
                                 <label for="sort">Sắp Xếp </label>
-                                <select name="sortby" id="sort" class=" form-control-sm">
+                                <select name="sort" id="sort" class=" form-control-sm">
                                     <option value="name">Tên</option>
                                     <option value="price">Giá</option>
                                 </select>
                             </span>
                             <span>
-                                <select name="" id="" class=" form-control-sm">
-                                    <option value="">Tăng Dần</option>
-                                    <option value="">Giảm Dần</option>
+                                <select name="a-d" id="a-d" class=" form-control-sm">
+                                    <option value="ascending">Tăng Dần</option>
+                                    <option value="decrease">Giảm Dần</option>
                                 </select>
                             </span>
                         </div>
-                        <button type="submit" class="btn btn-secondary text-light mt-3">Áp Dụng</button>
+                        <button type="submit" class="btn btn-secondary text-light mt-3" id="ap-dung">Áp Dụng</button>
                     </div>
                 </div>
-            </div>
+            </form>
             <!-- close first col -->
             <div class="col-md-9">
                 <div class="row mt-0 card-deck mr-4">
                     <?php 
-
                     $queryCount = $MyConn->query("SELECT * FROM SP");
                     $limit = 0;
-                    
                     $cur_page = 1;
-
-                    $result_per_page = 6;
-
+                    $result_per_page = 20;                    
                     if(isset($_GET['page'])) {
                         $cur_page = $_GET['page'];
-
                         $limit = ($cur_page - 1) * $result_per_page;
                     }
-                    
+                    $sort_option = "";
+                    $sort_name = "TEN_SP";
                     $i = 0;
-                    $queryP = "SELECT * FROM SP LIMIT $limit,$result_per_page";
-
+                    if(isset($_GET['sort'])&& $_GET['sort'] == "name"){
+                        $sort_name = "TEN_SP";
+                        if(isset($_GET['a-d'])){
+                            if($_GET['a-d']== "ascending"){
+                                $sort_option = "ASC";
+                            }
+                            elseif($_GET['a-d']=="decrease"){
+                                $sort_option = "DESC";
+                            }
+                        }
+                    }
+                    if(isset($_GET['sort'])&& $_GET['sort'] == "price"){
+                        $sort_name = "GIA";
+                        if(isset($_GET['a-d'])){
+                            if($_GET['a-d']== "ascending"){
+                                $sort_option = "ASC";
+                            }
+                            elseif($_GET['a-d']=="decrease"){
+                                $sort_option = "DESC";
+                            }
+                        }
+                    }
+                    if(isset($_GET['loai-sp'])){
+                        $loaispchecked = [];
+                        $loaispchecked = $_GET['loai-sp'];
+                        $rowloaisp = implode("','", $loaispchecked);;
+                        $queryP = "SELECT * FROM SP WHERE MA_LOAISP IN ('$rowloaisp') ORDER BY $sort_name $sort_option LIMIT $limit,$result_per_page";
+                    }
+                    if(isset($_GET['hangsx'])){
+                        $hangsxchecked = [];
+                        $hangsxchecked = $_GET['hangsx'];
+                        $rowhangsx = implode("','", $hangsxchecked);;
+                        $queryP = "SELECT * FROM SP WHERE MA_HANGSX IN ('$rowhangsx') ORDER BY $sort_name $sort_option LIMIT $limit,$result_per_page";
+                    }
+                    if(isset($_GET['loai-sp']) && isset($_GET['hangsx'])){
+                        $loaispchecked = [];
+                        $loaispchecked = $_GET['loai-sp'];
+                        $rowloaisp = implode("','", $loaispchecked);
+                        $hangsxchecked = [];
+                        $hangsxchecked = $_GET['hangsx'];
+                        $rowhangsx = implode("','", $hangsxchecked);
+                        $queryP = "SELECT * FROM SP WHERE MA_LOAISP IN ('$rowloaisp') AND MA_HANGSX IN ('$rowhangsx')  ORDER BY $sort_name $sort_option LIMIT $limit,$result_per_page";
+                    }
+                    if(!isset($_GET['loai-sp']) && !isset($_GET['hangsx'])) {
+                        $queryP = "SELECT * FROM SP ORDER BY $sort_name $sort_option LIMIT $limit,$result_per_page";
+                    }
                     $resultP = $MyConn->query($queryP);
-
                     $countP = mysqli_num_rows($queryCount);
-
+                    
 
                     $number_of_page = ceil($countP / $result_per_page);
 
@@ -256,7 +294,7 @@ $resultMan = $MyConn->query($queryMan);
                             <div class="card-header p-0 border-bottom-0 h-100">
                                 <a href="detail.php?productID=<?php echo $getP['MA_SP'] ?>"
                                     class="text-decoration-none text-dark">
-                                    <img src="<?php echo "admin/product_images/".$getP['HINHANH_SP'] ?>"
+                                    <img src="<?php echo $getP['HINHANH_SP'] ?>"
                                         class="card-img-top h-100 img-reponsive">
                                 </a>
                             </div> <!-- close card header -->
@@ -274,7 +312,6 @@ $resultMan = $MyConn->query($queryMan);
                                 <button id="myBtn" onclick="addCart('<?php echo $getP['MA_SP'] ?>')"
                                     class="btn btn-warning w-100 mt-auto text-white"><i class="fas fa-cart-plus"></i>
                                     Thêm Vào Giỏ</button>
-
                             </div>
                             <!-- close card body -->
                         </div> <!-- close card -->
@@ -286,7 +323,6 @@ $resultMan = $MyConn->query($queryMan);
                         <?php 
                         if($cur_page == 1) {
                             $start_disable = "disabled";
-                            
                         }
                     ?>
                         <li class="page-item text-warning <?php if($cur_page == 1) echo "disabled"; ?>">
@@ -365,7 +401,7 @@ $resultMan = $MyConn->query($queryMan);
         </div>
         <hr style="background-color: white; height: 1px; margin: 0; padding: 0;">
         <div class="container-fluid text-center text-light p-1">
-            <h7>Copyright © 2021. Powered by eCommerce</h7>
+            <h7>Copyright © 2023. Powered by eCommerce</h7>
         </div>
     </footer>
 

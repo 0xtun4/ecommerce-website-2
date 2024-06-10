@@ -16,7 +16,7 @@
         }
         public function setConnect()
         {
-            
+
             echo "<script>alert('".$this->host.$this->user.$this->passwd.$this->database."')</script>";
 
             $this->conn = new mysqli($this->host,$this->user,$this->passwd,$this->database);
@@ -28,6 +28,7 @@
 
         public function getConn() {
             return $this->conn;
+
         }
         public function setNextRs() {
             mysqli_next_result($this->conn);
@@ -50,7 +51,6 @@
         public function query($query) {
             if($this->isConnected()) {
                 $tableData = mysqli_query($this->conn,$query);
-
                 return $tableData;
             }
         }

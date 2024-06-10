@@ -37,12 +37,18 @@ else {
                 <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Tên Sản Phẩm:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Tên Sản Phẩm*:</label>
                             <div class="col-sm-6">
                             <input type="text" class="form-control" name="product_name" required value="<?php echo $cur_p_name ?>">
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="control-label col-sm-3 text-right mt-2">Nhà Sản Xuất*:</label>
+                            <div class="col-sm-6">
+                            <select name="manufacturer" class="form-control">
+                                <option value="" disabled selected>Lựa Chọn Nhà Sản Xuất</option>
 
                     <div class="form-group">
                         <div class="row">
@@ -59,7 +65,7 @@ else {
                             <div class="col-sm-6">
                             <select name="manufacturer" class="form-control">
                                 <option>Lựa Chọn Nhà Sản Xuất</option>
-                                <?php 
+                                <?php
                                     $getManQry = "select * from HANGSX";
 
                                     $result = $MyConn->query($getManQry);
@@ -126,20 +132,20 @@ else {
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Hình Ảnh Sản Phẩm:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Hình Ảnh Sản Phẩm*:</label>
                             <div class="col-sm-6">
-                            <input type="file" name="product_image" class="form-control-file">
+                                <input type="image" name="admin_image" class="form-control-file" required>
                             <br>
-                            <img src="<?php echo "product_images/$cur_p_image" ?>" width="60" height="60" class="rounded">
+                            <img src="<?php echo $cur_p_image ?>" width="60" height="60" class="rounded">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-sm-3 text-right mt-2">Giá Thành:</label>
+                            <label class="control-label col-sm-3 text-right mt-2">Giá Thành*:</label>
                             <div class="col-sm-6">
-                            <input type="number" name="product_price" class="form-control" required value="<?php echo $cur_p_price ?>">
+                            <input type="number" name="product_price" class="form-control" required pattern="^\d+(\.\d{1,2})?$" title="Giá phải là số không âm value="<?php echo $cur_p_price ?>">
                             </div>
                         </div>
                     </div>
@@ -175,8 +181,6 @@ else {
 <?php 
 
     if(isset($_POST['update'])) {
-        
-        $p_id = $_POST['product_id'];
         $p_name = $_POST['product_name'];
         $p_cat = $_POST['catalog'];
         $p_man = $_POST['manufacturer'];
@@ -193,7 +197,7 @@ else {
         move_uploaded_file($tmp_img,"product_images/$p_image");
 
 
-        $update_product = "update SP set MA_SP='$p_id', TEN_SP='$p_name', MA_LOAISP='$p_cat', MA_HANGSX='$p_man', MIEUTA_SP='$p_about', HINHANH_SP='$p_image',GIA='$p_price' where MA_SP='$cur_p_id'";
+        $update_product = "update SP set  TEN_SP='$p_name', MA_LOAISP='$p_cat', MA_HANGSX='$p_man', MIEUTA_SP='$p_about', HINHANH_SP='$p_image',GIA='$p_price' where MA_SP='$cur_p_id'";
 
         $executeUpdate = $MyConn->query($update_product);
 

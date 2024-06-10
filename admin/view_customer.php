@@ -49,7 +49,7 @@ else {
                                     <td style="vertical-align: middle;"><?php echo $start.$row['MA_KH'].$end; ?></td>
                                     <td style="vertical-align: middle;"><?php echo $start.$row['TEN_KH'].$end; ?></td>
                                     <td style="vertical-align: middle;">
-                                        <img src="<?php echo "customer_images/".$row['AVATAR'] ?>" width="60" height="60" class="rounded">
+                                        <img src="<?php echo "/admin/customer_images".$row['AVATAR'] ?>" width="60" height="60" class="rounded">
                                     </td>
                                     <td style="vertical-align: middle;"><?php echo $start.$row['EMAIL'].$end; ?></td>
                                     <td style="vertical-align: middle;"><?php echo $start.$row['DIENTHOAI'].$end; ?></td>
