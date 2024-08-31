@@ -1,0 +1,13 @@
+- hosts: all
+  connection: ssh
+  become: true
+  tasks:
+    - name: Copy Deployment.yml
+      copy:
+        src: /home/ec2-user/Deployment.yml
+        dest: /home/ubuntu/Deployment.yml
+
+    - name: Copy Service.yml
+      copy:
+        src: /home/ec2-user/Service.yml
+        dest: /home/ubuntu/Service.yml

@@ -1,0 +1,14 @@
+- hosts: all
+  connection: ssh
+  become: false
+  vars:
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+  tasks: 
+     - name: delete old deployment
+       command: kubectl delete -f /home/ubuntu/Deployment.yml
+     - name: delete old service
+       command: kubectl delete -f /home/ubuntu/Service.yml
+     - name: create new deployment
+       command: kubectl apply -f /home/ubuntu/Deployment.yml
+     - name: create new service
+       command: kubectl apply -f /home/ubuntu/Service.yml

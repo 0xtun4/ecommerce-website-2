@@ -1,0 +1,23 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: phpweb
+  labels:
+    app: phpweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpweb
+  template:
+    metadata:
+      labels:
+        app: phpweb
+    spec:
+      containers:
+      - name: phpweb
+        image: tunat/phpweb:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          protocol: TCP

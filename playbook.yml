@@ -1,0 +1,8 @@
+- hosts: all
+  become: true
+  connection: ssh
+  vars:
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+  tasks:
+    - name: Pull image from Dockerhub
+      command: sudo docker pull tunat/phpweb:latest
