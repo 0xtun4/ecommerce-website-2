@@ -953,10 +953,35 @@ public class ProductsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<ProductDto>> Create([FromBody] CreateProductDto createDto)
     {
-        // Validate input
-        if (string.IsNullOrEmpty(createDto.Name))
+        // Validate input - kiểm tra các trường bắt buộc
+        var validationErrors = new List<string>();
+
+        if (string.IsNullOrWhiteSpace(createDto.Name))
         {
-            return BadRequest(new { message = "Tên sản phẩm không được để trống" });
+            validationErrors.Add("Tên sản phẩm không được để trống");
+        }
+
+        if (string.IsNullOrWhiteSpace(createDto.Code))
+        {
+            validationErrors.Add("Mã sản phẩm không được để trống");
+        }
+
+        if (createDto.Price < 0)
+        {
+            validationErrors.Add("Giá sản phẩm không được âm");
+        }
+
+        if (createDto.CategoryId <= 0)
+        {
+            validationErrors.Add("Danh mục không hợp lệ");
+        }
+
+        if (validationErrors.Count > 0)
+        {
+            return BadRequest(new { 
+                message = "Dữ liệu không hợp lệ", 
+                errors = validationErrors 
+            });
         }
 
         // Tạo entity từ DTO
@@ -1481,20 +1506,25 @@ export function formatCurrency(amount) {
  * Parse chuỗi tiền tệ thành số
  * 
  * @param {string} currencyString - Chuỗi tiền tệ
- * @returns {number} Số tiền
+ * @returns {number} Số tiền (luôn dương cho giá cả sản phẩm)
  * 
  * @example
  * parseCurrency("1.000.000đ") // 1000000
+ * parseCurrency("-500.000đ")  // 500000 (giá không âm)
  */
 export function parseCurrency(currencyString) {
   if (!currencyString) {
     return 0;
   }
 
-  // Loại bỏ ký tự không phải số
+  // Loại bỏ tất cả ký tự không phải số
+  // Lưu ý: Giá sản phẩm luôn dương nên ta bỏ qua dấu âm
   const cleanString = currencyString.replace(/[^\d]/g, '');
   
-  return parseInt(cleanString, 10) || 0;
+  // Parse thành số, trả về 0 nếu không hợp lệ
+  const result = parseInt(cleanString, 10);
+  
+  return isNaN(result) ? 0 : result;
 }
 ```
 
