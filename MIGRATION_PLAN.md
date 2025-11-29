@@ -608,7 +608,7 @@ public bool IsEligibleForDiscount(Customer customer)
     var totalSpent = customer.Orders?.Sum(o => o.Total) ?? 0;
     
     // Giảm giá cho khách hàng chi tiêu trên 1 triệu
-    const decimal minimumSpent = 1_000_000;
+    decimal minimumSpent = 1_000_000;
     return totalSpent >= minimumSpent;
 }
 ```
@@ -730,6 +730,51 @@ public interface IProductService
 
     /// <summary>
     /// Xóa sản phẩm
+    /// </summary>
+    Task<bool> DeleteAsync(int id);
+}
+```
+
+### 10.2.1 Backend - Repository Interface
+
+```csharp
+// File: ECommerce.Core/Interfaces/IProductRepository.cs
+
+namespace ECommerce.Core.Interfaces;
+
+/// <summary>
+/// Interface định nghĩa các phương thức truy cập dữ liệu sản phẩm
+/// Repository pattern giúp tách biệt logic truy cập data khỏi business logic
+/// </summary>
+public interface IProductRepository
+{
+    /// <summary>
+    /// Lấy tất cả sản phẩm từ database
+    /// </summary>
+    Task<IEnumerable<Product>> GetAllAsync();
+
+    /// <summary>
+    /// Lấy sản phẩm theo ID
+    /// </summary>
+    Task<Product?> GetByIdAsync(int id);
+
+    /// <summary>
+    /// Lấy sản phẩm theo danh mục
+    /// </summary>
+    Task<IEnumerable<Product>> GetByCategoryAsync(int categoryId);
+
+    /// <summary>
+    /// Thêm sản phẩm mới vào database
+    /// </summary>
+    Task<Product> CreateAsync(Product product);
+
+    /// <summary>
+    /// Cập nhật thông tin sản phẩm
+    /// </summary>
+    Task<Product> UpdateAsync(Product product);
+
+    /// <summary>
+    /// Xóa sản phẩm khỏi database
     /// </summary>
     Task<bool> DeleteAsync(int id);
 }
